@@ -5,12 +5,14 @@ import ObfuscationAnalysis from './components/ObfuscationAnalysis';
 import ProvidersGrid from './components/ProvidersGrid';
 import Architecture from './components/Architecture';
 import CodeBreakdown from './components/CodeBreakdown';
+import DecodedSource from './components/DecodedSource';
 import Footer from './components/Footer';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('decoded');
 
   const tabs = [
+    { id: 'decoded', label: 'Decoded Source', icon: '📄' },
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'obfuscation', label: 'Obfuscation', icon: '🔐' },
     { id: 'providers', label: 'Providers', icon: '🎬' },
@@ -46,6 +48,7 @@ export default function App() {
 
       {/* Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
+        {activeTab === 'decoded' && <DecodedSource />}
         {activeTab === 'overview' && <Overview />}
         {activeTab === 'obfuscation' && <ObfuscationAnalysis />}
         {activeTab === 'providers' && <ProvidersGrid />}
